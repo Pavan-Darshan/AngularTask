@@ -1,0 +1,65 @@
+ <div class="mainContainer">
+
+  <div class="btnChoose">
+    <div><p>   Set Column : </p></div>
+    <div>
+      <button (click)="onGridSelect(1)" [ngClass]="{'selectedButton':selectedButton === 1}">1</button>
+      <button (click)="onGridSelect(2)" [ngClass]="{'selectedButton':selectedButton === 2}">2</button>
+      <button (click)="onGridSelect(3)" [ngClass]="{'selectedButton':selectedButton === 3}">3</button>
+      <button (click)="onGridSelect(4)" [ngClass]="{'selectedButton':selectedButton === 4}">4</button>
+    </div>
+    <div>
+      <div class="icon" (click)="toggle($event)">
+        <div class="large-box"></div>
+        <div class="small-boxes">
+            <div class="small-box"></div>
+            <div class="small-box"></div>
+        </div>
+      </div>
+      
+    
+
+
+      <p-popover #op>
+        <div class="layout">
+          <div><p>Choose a Layout</p></div>
+          <div>
+            <div class="horizontal" (click)="showInColumn()" [class.active]="!layoutActive">
+              <div></div>
+              <div></div>
+            </div>
+            <div class="vertical" (click)="showInRow()" [class.active]="layoutActive">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+    </p-popover>
+    </div>
+  </div>
+  
+  <div  [class.containerRow]="!iscolumn" [class.containerColumn]="iscolumn">
+      <div class="gridLeft">
+        <div class="grid-container">
+          <gridster [options]="gridOptions" >
+            <gridster-item *ngFor="let item of items" [item]="item" >
+              <div class="grid-item-content">
+              {{item['name']}}
+              </div>
+            </gridster-item>
+          </gridster>
+        </div>
+      </div>
+     <div class="gridRight">
+      <div class="grid-container">
+        <gridster [options]="gridOptions1">
+          <gridster-item *ngFor="let item of items1" [item]="item">
+            <div class="grid-item-content">
+            {{item['name']}}
+            </div>
+          </gridster-item>
+        </gridster>
+      </div>
+      </div>
+  </div>
+</div> 

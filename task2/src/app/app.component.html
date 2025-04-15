@@ -1,0 +1,390 @@
+<!-- <div>
+  <div>
+    <p-button label="Add" (onClick)="onAdd()"></p-button>
+  </div>
+
+  <div>
+    <p-table [value]="employee" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Image</th>
+          <th>User ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Age</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-employee>
+        <tr>
+          <td>
+         
+            <img
+              [src]="employee.image | Url"
+              alt="Image Preview"
+              width="32px"
+              height="32px"
+            />
+          </td>
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.fName }}</td>
+          <td>{{ employee.lName }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.phone }}</td>
+          <td>{{ employee.age }}</td>
+          <td class="actionBtn">
+            <p-button label="View" (onClick)="onView(employee.id)"></p-button>
+            <p-button label="Edit" (onClick)="onEdit(employee.id)"></p-button>
+            <p-button
+              label="Delete"
+              (onClick)="onDelete(employee.id)"
+            ></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div> -->
+
+<!-- Add -->
+<!-- <div *ngIf="isAddForm" class="background">
+  <div
+    class="addForm"
+    [class.invalidForm]="formVal.submitted && formVal.invalid"
+  >
+    <div class="heading">
+      <p>Add Employee</p>
+      <p><i class="pi pi-times" (click)="onClose()"></i></p>
+    </div>
+    <div class="details">
+      <form #formVal="ngForm" (ngSubmit)="onSaveEmp(formVal)" novalidate>
+        
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="First Name"
+            ngModel
+            name="fname"
+            required
+            #fname="ngModel"
+          />
+          <div
+            *ngIf="fname.invalid && (fname.touched || formVal.submitted)"
+            class="error"
+          >
+            First Name is required.
+          </div>
+        </div>
+
+  
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Last Name"
+            ngModel
+            name="lname"
+            required
+            #lname="ngModel"
+          />
+          <div
+            *ngIf="lname.invalid && (lname.touched || formVal.submitted)"
+            class="error"
+          >
+            Last Name is required.
+          </div>
+        </div>
+
+        
+        <div class="card flex justify-center">
+          <input
+            type="email"
+            pInputText
+            placeholder="Email Address"
+            ngModel
+            name="email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div
+            *ngIf="email.invalid && (email.touched || formVal.submitted)"
+            class="error"
+          >
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">
+              Please enter a valid email address.
+            </div>
+          </div>
+        </div>
+
+       
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Phone Number"
+            ngModel
+            name="phone"
+            required
+            pattern="^[0-9]{10}$"
+            #phone="ngModel"
+          />
+          <div
+            *ngIf="phone.invalid && (phone.touched || formVal.submitted)"
+            class="error"
+          >
+            <div *ngIf="phone.errors?.['required']">
+              Phone Number is required.
+            </div>
+            <div *ngIf="phone.errors?.['pattern']">
+              Phone Number must be 10 digits.
+            </div>
+          </div>
+        </div>
+
+     
+        <div class="card flex justify-center">
+          <input
+            type="number"
+            pInputText
+            placeholder="Age"
+            ngModel
+            name="age"
+            required
+            min="18"
+            #age="ngModel"
+          />
+          <div
+            *ngIf="age.invalid && (age.touched || formVal.submitted)"
+            class="error"
+          >
+            <div *ngIf="age.errors?.['required']">Age is required.</div>
+            <div *ngIf="age.errors?.['min']">Age must be at least 18.</div>
+          </div>
+        </div>
+
+      
+        <div class="card flex justify-center" class="imagePreview">
+          <div *ngFor="let file of selectedImage">
+            <img
+              [src]="file | Url"
+              alt="Image Preview"
+              width="100"
+              height="100"
+            />
+          </div>
+          <input
+            type="file"
+            pInputText
+            (change)="onImageUpload($event)"
+            name="image"
+          />
+        </div>
+
+      
+        <div class="saveBtn">
+          <p-button type="submit">Save</p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<!-- edit -->
+<!-- <div *ngIf="isEdit" class="background">
+  <div class="addForm">
+    <div class="heading">
+      <p>Edit Employee</p>
+      <p><i class="pi pi-times" (click)="onClose()"></i></p>
+    </div>
+    <div class="details">
+      <form #formVal="ngForm" (ngSubmit)="onUpdate(formVal)">
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="First Name"
+            ngModel
+            name="fname"
+            [(ngModel)]="ngFname"
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Last Name"
+            ngModel
+            name="lname"
+            [(ngModel)]="ngLname"
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Email Address"
+            ngModel
+            name="email"
+            [(ngModel)]="ngEmail"
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Phone Number"
+            ngModel
+            name="phone"
+            [(ngModel)]="ngPhone"
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Age"
+            ngModel
+            name="age"
+            [(ngModel)]="ngAge"
+          />
+        </div>
+        <div class="card flex justify-center" class="imagePreview">
+          <img
+            [src]="isImageEdit | Url"
+            alt="Image Preview"
+            width="100px"
+            height="100px"
+          />
+          <input
+            type="file"
+            pInputText
+            placeholder="Image"
+            ngModel
+            (change)="onImageUpload($event)"
+          />
+        </div>
+
+        <div class="saveBtn">
+          <p-button type="Submit">Save</p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<!-- view -->
+
+<!-- <div *ngIf="isView" class="background">
+  <div class="addForm">
+    <div class="heading">
+      <p>Employee View</p>
+      <p><i class="pi pi-times" (click)="onClose()"></i></p>
+    </div>
+    <div class="details">
+      <form #formVal="ngForm" (ngSubmit)="onSaveEmp(formVal)">
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="First Name"
+            ngModel
+            name="fname"
+            [(ngModel)]="ngFname"
+            readonly
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Last Name"
+            ngModel
+            name="lname"
+            [(ngModel)]="ngLname"
+            readonly
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Email Address"
+            ngModel
+            name="email"
+            [(ngModel)]="ngEmail"
+            readonly
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Phone Number"
+            ngModel
+            name="phone"
+            [(ngModel)]="ngPhone"
+            readonly
+          />
+        </div>
+        <div class="card flex justify-center">
+          <input
+            type="text"
+            pInputText
+            placeholder="Age"
+            ngModel
+            name="age"
+            [(ngModel)]="ngAge"
+            readonly
+          />
+        </div>
+        <div class="card flex justify-center" class="imagePreview">
+          <img
+            [src]="isImageEdit | Url"
+            alt="Image Preview"
+            width="100px"
+            height="100px"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="main">
+  <div class="block" [class.even]="isEven" [class.odd]="isOdd" [ngStyle]="{'animation-duration': evenCount+'s'}"></div>
+  <div class="block" [class.even]="isEven" [class.odd]="isOdd" [ngStyle]="{'animation-duration': evenCount+'s'}"></div>
+</div>
+
+<div class="btns">
+  <button (click)="rotateEven()">Even</button>
+  <button (click)="rotateOdd()">Odd</button>
+  <button (click)="rotateStop()">Stop</button>
+</div>
+
+
+<div class="mainContainer">
+  <div class="shapes">
+    <div class="circle" id="circle" (click)="addCircle()"></div>
+    <div class="square" id="square" (click)="addSquare()"></div>
+    <div class="triangle" id="triangle" (click)="addTriangle()"></div>
+  </div>
+ <div class="copyContainer" id="copyContainer" 
+  (dragover)="dragoverHandler($event)" (drop)="dropEvent($event)">
+  </div>
+</div>
+
+
+<div class="example-box" cdkDrag>
+  Drag me around
+</div>
+
+
+
+

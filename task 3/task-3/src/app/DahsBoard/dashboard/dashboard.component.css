@@ -1,0 +1,15 @@
+button{
+    width: 100px;
+    height: 32px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 2px rgb(200, 199, 199);
+    margin-left: 20px;
+}
+h1{
+    color: blue;
+    margin-left: 20px;
+}
+
+
+

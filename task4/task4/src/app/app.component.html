@@ -1,0 +1,138 @@
+
+
+<div class="tripMainContainer">
+  <div class="tripInput">
+    <div>
+      <input type="text" placeholder="Trip A" #tripA />
+    </div>
+    <div>
+      <p>to</p>
+    </div>
+    <div>
+      <input type="text" placeholder="Trip B" #tripB />
+    </div>
+
+    <button (click)="onSave()" class="saveBtn">Save</button>
+  </div>
+
+  <div class="areaContainer">
+    <div *ngFor="let trip of area; let i = index" class="dotClass">
+      <div class="mains" >
+        <div class="lines">
+          <div *ngIf="i !== 0 && area.length > 0">
+            <!-- normal line -->
+            <div *ngIf="compareAreas(i,area)">
+              <!-- <div class="line"></div> -->
+              <canvas #lineCanvas width="150" height="20"></canvas>
+            </div>
+
+            <!-- arrowline -->
+            <div *ngIf="!compareAreas(i,area)" class="arrowFit">
+              <!-- <div class="linewithArrow">
+              </div>
+              <div class="arrow">
+                <i class="pi pi-angle-right" style="font-size: 1rem"></i>
+              </div> -->
+              <canvas #arrowCanvas width="150" height="20"></canvas>
+            </div>
+          </div>
+          <div class="circle"></div>
+        </div>
+        <div class="tripName">
+          <p>{{ trip.slice(0,3)+trip.slice(trip.indexOf('-'),trip.indexOf('-')+4) | uppercase }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let trip of areaSlipt; let i = index" class="dotClass1">
+      <div class="mains">
+        <div class="lines3">
+          <div class="crossArrow3" *ngIf="i === 0">
+            <!-- <div class="cross">
+            </div>
+            <div class="arrow3">
+              <i class="pi pi-angle-right" style="font-size: 1rem"></i>
+            </div> -->
+
+            <div
+              *ngIf="
+               area[area.length - 1].slice((area[area.length-1].indexOf('-')+1), (area[area.length-1].indexOf('-')+4)) === areaSlipt[i].slice(0, 3);
+                else arrow
+              "
+            >
+              <canvas #lineCanvas width="150" height="20"></canvas>
+            </div>
+
+            <ng-template #arrow>
+              <canvas #arrowCanvas width="150" height="20"></canvas>
+            </ng-template>
+          </div>
+          <div *ngIf="i !== 0 && areaSlipt.length > 0">
+            <!-- <div *ngIf="areaSlipt[i-1].slice(4)===areaSlipt[i].slice(0,3)" >
+            <div class="line"></div>
+           
+           </div> -->
+
+            <div
+              *ngIf="areaSlipt[i - 1].slice(4) !== areaSlipt[i].slice(0, 3)"
+              class="arrowFit1"
+            >
+              <!-- <div class="linewithArrow1">
+            </div>
+            <div class="arrow">
+              <i class="pi pi-angle-right" style="font-size: 1rem"></i>
+            </div> -->
+              <canvas #arrowCanvas width="150" height="20"></canvas>
+            </div>
+          </div>
+          <div class="circle1"></div>
+        </div>
+        <div class="tripName1">
+          <p>{{ trip.slice(0,3)+trip.slice(trip.indexOf('-'),trip.indexOf('-')+4) | uppercase }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let trip of areaSlipt2; let i = index" class="dotClass">
+      <div class="mains">
+        <div class="lines">
+          <div class="crossArrow2" *ngIf="i === 0">
+            <!-- <div class="cross">
+            </div>
+            <div class="arrow3">
+              <i class="pi pi-angle-right" style="font-size: 1rem"></i>
+            </div> -->
+           <div *ngIf="areaSlipt[areaSlipt.length - 1].slice((areaSlipt[areaSlipt.length-1].indexOf('-')+1), (areaSlipt[areaSlipt.length-1].indexOf('-')+4)) === areaSlipt2[i].slice(0, 3)
+            ;else arrow">
+              <canvas #lineCanvas width="150" height="20"></canvas>
+            </div>
+
+            <ng-template #arrow>
+              <canvas #arrowCanvas width="150" height="20"></canvas>
+            </ng-template>
+          </div>
+          <div *ngIf="i !== 0 && areaSlipt2.length > 0">
+            <div *ngIf="compareAreas(i,areaSlipt2)">
+              <!-- <div class="line"></div> -->
+              <canvas #lineCanvas width="150" height="20"></canvas>
+            </div>
+
+            <div *ngIf="!compareAreas(i,areaSlipt2)" class="arrowFit">
+              <!-- <div class="linewithArrow">
+            </div>
+            <div class="arrow">
+              <i class="pi pi-angle-right" style="font-size: 1rem"></i>
+            </div> -->
+
+              <canvas #arrowCanvas width="150" height="20"></canvas>
+            </div>
+          </div>
+          <div class="circle"></div>
+        </div>
+        <div class="tripName">
+          <p>{{ trip.slice(0,3)+trip.slice(trip.indexOf('-'),trip.indexOf('-')+4) | uppercase }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
