@@ -14,10 +14,10 @@ export class AppComponent {
 
 
 
-  @ViewChild('op') op!: Popover;
+@ViewChild('op') op!: Popover;
  
-  gridOptions !: GridsterConfig;
-  gridOptions1 !: GridsterConfig;
+gridOptions !: GridsterConfig;
+gridOptions1 !: GridsterConfig;
 items !: GridsterItem[];
 items1 !: GridsterItem[];
 iscolumn =false;
@@ -66,12 +66,12 @@ gridLeft(){
     maxRows: this.maxRowsLeft,
     margin: 10,
     scrollToNewItems : false,
-    // displayGrid : 'none',
+    displayGrid : 'none',
     gridType  :"fixed",
     fixedColWidth: 362,
     fixedRowHeight: 70,
     api : {
-      optionsChanged :()=>{
+      optionsChanged : ()=>{
         console.log("Option Changed is called.....!");
       }
     }
@@ -87,10 +87,6 @@ gridLeft(){
     { x: 2, y: 2, cols: this.leftCol, rows: this.leftRows, name: 'Item 7' },
     { x: 3, y: 2, cols: this.leftCol, rows: this.leftRows, name: 'Item 8' },
   ];
-
-  
-
-  
   
 }
 
@@ -143,14 +139,7 @@ itemChanges(item: GridsterItem) {
 }
 
 onGridSelect(column : number){
-  // if(column===1){
-  //   this.maxRowsLeft = 64;
-  //   this.minRowsLeft =4;
-  // }
 
-  // this.maxColumnLeft = column;
-  // this.leftCol= column
-  
   this.selectedButton = column;
 
   this.items = [];
@@ -173,13 +162,9 @@ onGridSelect(column : number){
       cols: cols,
       rows: 2,
       name: `Item ${i + 1}`
+      
     });
   }
-
-
-  console.log(this.items);
-  
-
 
 }
 

@@ -1,0 +1,45 @@
+{
+  "user": [
+    {
+      "id": "e68f",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "b447",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "5eff",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "3e9c",
+      "title": "Angular",
+      "views": 205
+    },
+    {
+      "id": "6200",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "5d3c",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "e0da",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "95e1",
+      "title": "a title",
+      "views": 100
+    }
+  ],
+  "admin": []
+}

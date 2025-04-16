@@ -41,7 +41,7 @@
   <div  [class.containerRow]="!iscolumn" [class.containerColumn]="iscolumn">
       <div class="gridLeft">
         <div class="grid-container">
-          <gridster [options]="gridOptions" >
+          <gridster [options]="gridOptions"  class="grid">
             <gridster-item *ngFor="let item of items" [item]="item" >
               <div class="grid-item-content">
               {{item['name']}}
@@ -52,7 +52,7 @@
       </div>
      <div class="gridRight">
       <div class="grid-container">
-        <gridster [options]="gridOptions1">
+        <gridster [options]="gridOptions1" class="grid">
           <gridster-item *ngFor="let item of items1" [item]="item">
             <div class="grid-item-content">
             {{item['name']}}
@@ -63,3 +63,4 @@
       </div>
   </div>
 </div> 
+

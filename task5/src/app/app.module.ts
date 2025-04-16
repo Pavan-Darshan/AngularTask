@@ -12,6 +12,8 @@ import { Popover } from 'primeng/popover';
 import { PopoverModule } from 'primeng/popover';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { RoutingModule } from './app.routes';
+import { RouterModule } from '@angular/router';
 
 
 

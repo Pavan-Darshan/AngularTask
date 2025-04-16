@@ -1,7 +1,10 @@
-import { Component, ElementRef, QueryList, viewChild, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, inject, QueryList, Renderer2, viewChild, ViewChild, viewChildren, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GridsterComponentInterface, GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { Popover } from 'primeng/popover';
+import { NewCompComponent } from './newComp/new-comp/new-comp.component';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +17,12 @@ import { Popover } from 'primeng/popover';
 export class AppComponent {
   title = 'task4';
 
-  
-
-
 
   @ViewChild('tripA') tripA !: ElementRef;
-  @ViewChild('tripB') tripB !: ElementRef
+  @ViewChild('tripB') tripB !: ElementRef; 
+
+
+
 
   @ViewChildren('arrowCanvas') canvasRefs!: QueryList<ElementRef<HTMLCanvasElement>>;
   @ViewChildren('lineCanvas') lineCanvases!: QueryList<ElementRef<HTMLCanvasElement>>;
@@ -54,9 +57,7 @@ export class AppComponent {
     if(this.areaSlipt2.length>0)
       this.areaSlipt2.push(trip);
     else{
-      if( this.area.length>0 &&  
-        this.area[this.area.length-1].toUpperCase()
-         === trip.toUpperCase() && !this.extendArea){
+      if( this.area.length>0 && this.area[this.area.length-1].toUpperCase() === trip.toUpperCase() && !this.extendArea){
         this.extendArea=true;
         this.area.pop();
         this.areaSlipt.push(trip);
@@ -73,7 +74,6 @@ export class AppComponent {
     this.tripA.nativeElement.value = '';
     this.tripB.nativeElement.value = '';
 
-    
   }
 
 
@@ -142,8 +142,7 @@ export class AppComponent {
 
   compareAreas(i: number, area: any[]): boolean {
     
-    if (i === 0 || !area[i - 1] || !this.area[i]) 
-      return false;
+    if (i === 0 || !area[i - 1] || !this.area[i]) return false;
   
     let prev : string= area[i - 1];
     let curr : string= area[i];
@@ -154,6 +153,45 @@ export class AppComponent {
   }
 
 
+
+  dataNew :  string ='Angular'
+
+ @ViewChild('newdata') data1 !: ElementRef;
+//  @ViewChildren('comp') comp !: QueryList<NewCompComponent>;
+@ViewChild ('comp') comp !: NewCompComponent;
+
+ array =[1,2,3,4,5];
+
+ http :HttpClient = inject(HttpClient);
+
+ 
+onload(){
+  //  this.comp.nativeElement = this.dataNew;
+  //   // this.comp=dataNew;
+
+
+  this.http.post("http://localhost:3000/user",{
+    "title": "a title",
+    "views": 100
+  }).subscribe();
+
+
+  this.http.get("http://localhost:3000/user/3e9c").subscribe((res)=>{
+    console.log(res);
+    
+  })
+
+  this.comp.sub.subscribe((val)=>{
+    console.log(val);
+    
+  });
+
+
+  this.comp.behav.subscribe((val)=>{
+    console.log(val);
+    
+  })
+}
 
 }
 
