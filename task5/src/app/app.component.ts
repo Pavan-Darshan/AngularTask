@@ -66,7 +66,7 @@ gridLeft(){
     maxRows: this.maxRowsLeft,
     margin: 10,
     scrollToNewItems : false,
-    displayGrid : 'none',
+    displayGrid : 'always',
     gridType  :"fixed",
     fixedColWidth: 362,
     fixedRowHeight: 70,
@@ -92,7 +92,7 @@ gridLeft(){
 
 
 itemInit(item : GridsterItem){
-  console.log("iteminit");
+  console.log(item);
   
 }
 
@@ -122,6 +122,7 @@ gridRight(){
     gridType  :"fixed",
     fixedColWidth: 114,
     fixedRowHeight: 42,
+    
   
     
   };
@@ -147,7 +148,7 @@ onGridSelect(column : number){
   let cols : number = 1;
 
   if(column === 1)
-    cols=4;
+    cols = 4;
  
   if(column === 2)
     cols = 2;
@@ -155,7 +156,7 @@ onGridSelect(column : number){
   for (let i = 0; i < 8; i++) {
     
     const x = i % column;              
-    const y = Math.floor(i / column) *2; 
+    const y = Math.floor(i / column) *2;  
     this.items.push({
       x: x,
       y: y,

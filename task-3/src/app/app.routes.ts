@@ -7,7 +7,7 @@ import { RedirectedPage } from './service/redirected';
 
 export const routes: Routes = [
     {path : '',component :LoginComponent},
-    {path : 'dashboard' , component : DashboardComponent,canActivate : [AuthService]},
+    {path : 'dashboard' , component : DashboardComponent,canActivate : [AuthService] , },
     { path : '**', component : RedirectedPage}
 ];
 @NgModule({
